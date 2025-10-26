@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Externes</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header>
+        <h1>Externes</h1>
+        <div class="mode-toggle">
+            <button id="modeBtn">Night</button>
+        </div>
+        <div class="header-buttons">
+            <a href="index.html">Über mich</a>
+            <a href="lebenslauf.html">Meine Laufbahn</a>
+        </div>
+    </header>
+<h3 id="externa"></h3>
+        <div class="gallery" style="display: flex; flex-wrap: wrap; gap: 1rem;">
+            <div class="gallery-item" style="flex: 1 1 calc(33.333% - 1rem);">
+                <h4>VermKV</h4>
+                <a href="https://lvermgeo.rlp.de/" target="_blank" rel="noopener noreferrer">
+                    <img src="LVermGeo_Dienstgebaeude.jpg" alt="Projekt 1">
+                    
+                </a>
+            </div>
+            <div class="gallery-item" style="flex: 1 1 calc(33.333% - 1rem);">
+                <h4>Hochschule Mainz</h4>
+                <a href="https://www.hs-mainz.de/" target="_blank" rel="noopener noreferrer">
+                    <img src="HSMZ_Logo_Startseite_2023.jpg" alt="Projekt 2">
+                  
+                </a>
+            </div>
+            <div class="gallery-item" style="flex: 1 1 calc(33.333% - 1rem);">
+                <h4>DLR RNH</h4>
+                <a href="https://www.dlr-rnh.rlp.de/DLR-RNH/Aktuelles/Ueberblick" target="_blank" rel="noopener noreferrer">
+                    <img src="800x400_DLR_KH_Altbau_Strasse_DLR.jpg" alt="Interaktive Karte">
+                    
+                </a>
+            </div>
+        </div>
+    </div>
+      <div class="violet-box">
+        <div class="social-fixed">
+        <a href="https://www.linkedin.com/in/deinprofil" target="_blank" rel="noopener noreferrer" class="external-btn" title="LinkedIn">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" style="width:32px;height:32px;vertical-align:middle;">
+        </a>
+        <a href="https://github.com/annedick" target="_blank" rel="noopener noreferrer" class="external-btn" title="GitHub">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" style="width:32px;height:32px;vertical-align:middle;">
+        </a>
+    </div>
+    </div>
+    <script>
+    const modeBtn = document.getElementById('modeBtn');
+    const body = document.body;
+    function updateModeButton() {
+        if (body.classList.contains('night-mode')) {
+            modeBtn.textContent = 'Light';
+            modeBtn.classList.add('night');
+        } else {
+            modeBtn.textContent = 'Night';
+            modeBtn.classList.remove('night');
+        }
+    }
+    modeBtn.addEventListener('click', () => {
+        body.classList.toggle('night-mode');
+        updateModeButton();
+    });
+    updateModeButton();
+    </script>
+</body>
+</html>

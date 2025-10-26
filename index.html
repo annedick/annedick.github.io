@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header>
+        <h1>Über mich</h1>
+        <div class="mode-toggle">
+            <button id="modeBtn">Night</button>
+        </div>
+        <div class="header-buttons">
+            <a href="lebenslauf.html">Meine Laufbahn</a>
+            <a href="externa.html">Externes</a>
+        </div>
+    </header>
+    <div class="container" style="display: flex;">
+        <div>
+            <h2>Hallo ich bin Anne!</h2>
+            <p>
+                Herzlich Willkommen auf meiner ganz persönlichen Homepage! Ich studiere Geoinformatik und Vermessung im 5. Semester. 
+                Wenn du neugierig bist kannst du ja mehr über mich auf meiner GitHub-Seite herausfinden: 
+                <a href="https://annedick.github.io/" target="_blank">annedick.github.io</a>.
+            </p>
+            <p>
+                Momentan studiere ich noch an der Hochschule Mainz, aber bald bin ich hoffentlich mit diesem Lebensabschnitt fertig und kann in die Arbeitswelt starten.
+            </p>
+        </div>
+        <figure style="display: flex; flex-direction: column; align-items: flex-end; justify-content: center; max-width: 50%;">
+            <img src="PHOTO-2024-06-05-13-16-00.jpg" style="width: 50%; height: auto;">
+            <figcaption>Lori und Ich bei Arbeit</figcaption>
+        </figure>
+    </div>
+    <div class="violet-box">
+    <div class="social-fixed">
+        <a href="https://www.linkedin.com/in/deinprofil" target="_blank" rel="noopener noreferrer" class="external-btn" title="LinkedIn">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" style="width:32px;height:32px;vertical-align:middle;">
+        </a>
+        <a href="https://github.com/annedick" target="_blank" rel="noopener noreferrer" class="external-btn" title="GitHub">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" style="width:32px;height:32px;vertical-align:middle;">
+        </a>
+    </div>
+    </div>
+    <script>
+    const modeBtn = document.getElementById('modeBtn');
+    const body = document.body;
+    function updateModeButton() {
+        if (body.classList.contains('night-mode')) {
+            modeBtn.textContent = 'Light';
+            modeBtn.classList.add('night');
+        } else {
+            modeBtn.textContent = 'Night';
+            modeBtn.classList.remove('night');
+        }
+    }
+    modeBtn.addEventListener('click', () => {
+        body.classList.toggle('night-mode');
+        updateModeButton();
+    });
+    updateModeButton();
+    </script>
+</body>
+</html>

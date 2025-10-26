@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lebenslauf</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header>
+        <h1>Meine Laufbahn</h1>
+        <div class="mode-toggle">
+            <button id="modeBtn">Night</button>
+        </div>
+        <div class="header-buttons">
+            <a href="index.html">Über mich</a>
+            <a href="externa.html">Externes</a>
+        </div>
+    </header>
+    <div class="container">
+        <h3></h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Jahr</th>
+                    <th>Position</th>
+                    <th>Ort</th>
+                    <th>Stichwort</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2023 - 2026</td>
+                    <td>Studierende</td>
+                    <td>HS Mainz</td>
+                    <td>Studi</td>
+                </tr>
+                <tr>
+                    <td>2020 - 2023</td>
+                    <td>Auszubildende</td>
+                    <td>VermKV</td>
+                    <td>Azubi</td>
+                </tr>
+                <tr>
+                    <td>2016 - 2019</td>
+                    <td>Schülerin</td>
+                    <td>Gymnasium</td>
+                    <td>Schuli</td>
+                </tr>
+            </tbody>
+        </table>
+    <div class="violet-box">
+        <div class="social-fixed">
+        <a href="https://www.linkedin.com/in/deinprofil" target="_blank" rel="noopener noreferrer" class="external-btn" title="LinkedIn">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" style="width:32px;height:32px;vertical-align:middle;">
+        </a>
+        <a href="https://github.com/annedick" target="_blank" rel="noopener noreferrer" class="external-btn" title="GitHub">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" style="width:32px;height:32px;vertical-align:middle;">
+        </a>
+    </div>
+    </div>
+    <script>
+    const modeBtn = document.getElementById('modeBtn');
+    const body = document.body;
+    function updateModeButton() {
+        if (body.classList.contains('night-mode')) {
+            modeBtn.textContent = 'Light';
+            modeBtn.classList.add('night');
+        } else {
+            modeBtn.textContent = 'Night';
+            modeBtn.classList.remove('night');
+        }
+    }
+    modeBtn.addEventListener('click', () => {
+        body.classList.toggle('night-mode');
+        updateModeButton();
+    });
+    updateModeButton();
+    </script>
+</body>
+</html>
