@@ -51,39 +51,30 @@
     updateModeButton();
 </script>
 <script>
-    (function(){
-        // Fetch and render news.json (latest 5)
-        async function loadNews() {
-            const container = document.getElementById('news-list');
-            try {
-                const res = await fetch('https://raw.githubusercontent.com/yuzzfeng/Geoinformatik2_HS_Mainz/main/Uebung2/assets/news.json'); // Korrigierte RAW-URL
-                if (!res.ok) throw new Error('Failed to load news');
-                const data = await res.json();
-                const list = data.slice(0,5).map(item => {
-                    // Bild links, Inhalt rechts
-                    const img = item.image ? `<img src="${item.image}" alt="" style="width:480px;max-width:100vw;height:320px;object-fit:cover;border-radius:0.7em;box-shadow:0 2px 16px #0002;">` : '<div style="width:480px;max-width:100vw;height:320px;display:flex;align-items:center;justify-content:center;background:#f3f3f3;border-radius:0.7em;">📰</div>';
-                    return `
-                    <article style="display:flex;gap:2.5rem;align-items:flex-start;margin-bottom:2.7rem;flex-wrap:wrap;">
-                        <div style="flex-shrink:0;">${img}</div>
-                        <div style="flex:1;min-width:220px;display:flex;flex-direction:column;justify-content:center;max-width:calc(100% - 500px);">
-                            <div style="color:#222;font-size:1.18rem;margin-bottom:0.2em;">${item.date}</div>
-                            <div style="font-weight:800;font-size:2.2rem;line-height:1.1;margin-bottom:0.3em;">${item.title}</div>
-                            <div style="font-size:1.5rem;line-height:1.3;margin-bottom:1.1em;">${item.summary}</div>
-                            ${item.link ? `<a href="${item.link}" target="_blank" style="display:inline-block;padding:0.4em 1.3em;font-size:1.2rem;border:2px solid #222;border-radius:1.7em;text-decoration:none;color:#111;font-weight:500;transition:background .18s;line-height:1.2;">→ Zum Artikel</a>` : ''}
-                        </div>
-                    </article>
-                    `;
-                }).join('');
-                container.innerHTML = list || '<p>No news available.</p>';
-            }catch(err){
-                container.innerHTML = '<p style="color:crimson">Failed to load news.</p>';
-                console.error('loadNews error', err);
-            }
+// Automatisches Einlesen und strukturierte Darstellung der News
+(function(){
+    async function loadNews() {
+        const container = document.getElementById('news-list');
+        try {
+            const res = await fetch('news.json');
+            if (!res.ok) throw new Error('Failed to load news');
+            const data = await res.json();
+            container.innerHTML = data.map(item => `
+                <div class="news-card" style="border:1px solid #ddd;border-radius:8px;margin-bottom:1.5rem;padding:1rem;background:#fff;max-width:600px;margin-left:auto;margin-right:auto;box-shadow:0 2px 8px rgba(122,71,138,0.08);">
+                    <img src="${item.image}" alt="${item.title}" style="width:100%;max-width:320px;height:auto;border-radius:6px;margin-bottom:0.7rem;" />
+                    <div style="font-size:1.1rem;color:#7a478a;font-weight:bold;">${item.date}</div>
+                    <h4 style="margin:0.2rem 0 0.5rem 0;color:#222;">${item.title}</h4>
+                    <div style="font-size:1rem;color:#444;margin-bottom:0.7rem;">${item.summary}</div>
+                </div>
+            `).join('');
+        } catch(err) {
+            container.innerHTML = '<p style="color:crimson">Fehler beim Laden der News.</p>';
+            console.error('loadNews error', err);
         }
-        // Load when DOM ready
-        if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', loadNews);
-        else loadNews();
-    })();
+    }
+    if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', loadNews);
+    else loadNews();
+})();
 </script>
 </body>
 </html>
