@@ -20,10 +20,8 @@
         </div>
     </header>
     <div class="container">
-        <h3></h3>
-        
-
-        
+        <h3>News</h3>
+        <div id="news-list"></div>
     <div class="violet-box">
         <div class="social-fixed">
         <a href="https://www.linkedin.com/in/deinprofil" target="_blank" rel="noopener noreferrer" class="external-btn" title="LinkedIn">
@@ -32,7 +30,7 @@
         <a href="https://github.com/annedick" target="_blank" rel="noopener noreferrer" class="external-btn" title="GitHub">
             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" style="width:32px;height:32px;vertical-align:middle;">
         </a>
-    </div>
+        </div>
     </div>
     <script>
     const modeBtn = document.getElementById('modeBtn');
@@ -51,6 +49,41 @@
         updateModeButton();
     });
     updateModeButton();
-    </script>
+</script>
+<script>
+    (function(){
+        // Fetch and render news.json (latest 5)
+        async function loadNews() {
+            const container = document.getElementById('news-list');
+            try {
+                const res = await fetch('https://github.com/yuzzfeng/Geoinformatik2_HS_Mainz/blob/main/Uebung2/assets/news.json'); // Korrigierte URL
+                if (!res.ok) throw new Error('Failed to load news');
+                const data = await res.json();
+                const list = data.slice(0,5).map(item => {
+                    // Bild links, Inhalt rechts
+                    const img = item.image ? `<img src="${item.image}" alt="" style="width:480px;max-width:100vw;height:320px;object-fit:cover;border-radius:0.7em;box-shadow:0 2px 16px #0002;">` : '<div style="width:480px;max-width:100vw;height:320px;display:flex;align-items:center;justify-content:center;background:#f3f3f3;border-radius:0.7em;">📰</div>';
+                    return `
+                    <article style="display:flex;gap:2.5rem;align-items:flex-start;margin-bottom:2.7rem;flex-wrap:wrap;">
+                        <div style="flex-shrink:0;">${img}</div>
+                        <div style="flex:1;min-width:220px;display:flex;flex-direction:column;justify-content:center;max-width:calc(100% - 500px);">
+                            <div style="color:#222;font-size:1.18rem;margin-bottom:0.2em;">${item.date}</div>
+                            <div style="font-weight:800;font-size:2.2rem;line-height:1.1;margin-bottom:0.3em;">${item.title}</div>
+                            <div style="font-size:1.5rem;line-height:1.3;margin-bottom:1.1em;">${item.summary}</div>
+                            ${item.link ? `<a href="${item.link}" target="_blank" style="display:inline-block;padding:0.4em 1.3em;font-size:1.2rem;border:2px solid #222;border-radius:1.7em;text-decoration:none;color:#111;font-weight:500;transition:background .18s;line-height:1.2;">→ Zum Artikel</a>` : ''}
+                        </div>
+                    </article>
+                    `;
+                }).join('');
+                container.innerHTML = list || '<p>No news available.</p>';
+            }catch(err){
+                container.innerHTML = '<p style="color:crimson">Failed to load news.</p>';
+                console.error('loadNews error', err);
+            }
+        }
+        // Load when DOM ready
+        if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', loadNews);
+        else loadNews();
+    })();
+</script>
 </body>
 </html>
