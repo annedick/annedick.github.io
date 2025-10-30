@@ -56,7 +56,7 @@
         async function loadNews() {
             const container = document.getElementById('news-list');
             try {
-                const res = await fetch('https://github.com/yuzzfeng/Geoinformatik2_HS_Mainz/blob/main/Uebung2/assets/news.json'); // Korrigierte URL
+                const res = await fetch('https://raw.githubusercontent.com/yuzzfeng/Geoinformatik2_HS_Mainz/main/Uebung2/assets/news.json'); // Korrigierte RAW-URL
                 if (!res.ok) throw new Error('Failed to load news');
                 const data = await res.json();
                 const list = data.slice(0,5).map(item => {
