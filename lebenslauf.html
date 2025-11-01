@@ -61,11 +61,11 @@
             if (!res.ok) throw new Error('Failed to load news');
             const data = await res.json();
             container.innerHTML = data.map(item => `
-                <div class="news-card" style="border:1px solid #ddd;border-radius:8px;margin-bottom:1.5rem;padding:1rem;background:#fff;max-width:600px;margin-left:auto;margin-right:auto;box-shadow:0 2px 8px rgba(122,71,138,0.08);">
+                <div class="news-card" style="border:1px solid #ddd;border-radius:8px;margin-bottom:1.5rem;padding:1rem;max-width:1000px;margin-left:auto;margin-right:auto;box-shadow:0 2px 8px rgba(122,71,138,0.08);background:${body.classList.contains('night-mode') ? '#181818' : '#fff'};color:${body.classList.contains('night-mode') ? '#c7a4ff' : '#222'};">
                     <img src="${item.image}" alt="${item.title}" style="width:100%;max-width:320px;height:auto;border-radius:6px;margin-bottom:0.7rem;" />
-                    <div style="font-size:1.1rem;color:#7a478a;font-weight:bold;">${item.date}</div>
-                    <h4 style="margin:0.2rem 0 0.5rem 0;color:#222;">${item.title}</h4>
-                    <div style="font-size:1rem;color:#444;margin-bottom:0.7rem;">${item.summary}</div>
+                    <div style="font-size:1.1rem;color:${body.classList.contains('night-mode') ? '#c7a4ff' : '#7a478a'};font-weight:bold;">${item.date}</div>
+                    <h4 style="margin:0.2rem 0 0.5rem 0;">${item.title}</h4>
+                    <div style="font-size:1rem;margin-bottom:0.7rem;">${item.summary}</div>
                 </div>
             `).join('');
         } catch(err) {
