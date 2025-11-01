@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karten</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* Karten und Marker/Route immer oben anzeigen */
+        .folium-map, #map, .leaflet-pane, .leaflet-marker-pane, .leaflet-popup-pane, .leaflet-overlay-pane {
+            z-index: 500 !important;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Karten</h1>
+        <div class="mode-toggle">
+            <button id="modeBtn">Night</button>
+        </div>
+        <div class="header-buttons">
+            <a href="index.html">Über mich</a>
+            <a href="lebenslauf.html">News</a>
+            <a href="externa.html">Projekte</a>
+        </div>
+    </header>
+<h3 id="externa"></h3>
+            <!-- Basiskarte eingebunden -->
+    <div style="background:#fff; padding:2.5rem 3vw;">
+        <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; margin-top:2.5rem;">
+            <div style="flex: 1 1 45%; min-width: 400px; max-width: 900px;">
+                <h2 style="text-align:center;margin-bottom:1rem;color:#7a478a;">Basiskarte</h2>
+                <iframe src="basismap.html" width="100%" height="500" style="border:1px solid #7a478a;border-radius:8px;box-shadow:0 2px 12px #7a478a22;" title="Basiskarte"></iframe>
+            </div>
+            <div style="flex: 1 1 45%; min-width: 400px; max-width: 900px;">
+                <h2 style="text-align:center;margin-bottom:1rem;color:#7a478a;">Punktekarte</h2>
+                <iframe src="punktekarte.html" width="100%" height="500" style="border:1px solid #7a478a;border-radius:8px;box-shadow:0 2px 12px #7a478a22;" title="Punktekarte"></iframe>
+            </div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; margin-top:2.5rem;">
+            <div style="flex: 1 1 45%; min-width: 400px; max-width: 900px;">
+                <h2 style="text-align:center;margin-bottom:1rem;color:#7a478a;">Routenkarte</h2>
+                <iframe src="routenkarte.html" width="100%" height="500" style="border:1px solid #7a478a;border-radius:8px;box-shadow:0 2px 12px #7a478a22;" title="Routenkarte"></iframe>
+            </div>
+           <!-- <div style="flex: 1 1 45%; min-width: 400px; max-width: 900px;">
+                <h2 style="text-align:center;margin-bottom:1rem;color:#7a478a;">Flächenkarte (online)</h2>
+                <iframe src="flaechenkarte.html" width="100%" height="500" style="border:1px solid #7a478a;border-radius:8px;box-shadow:0 2px 12px #7a478a22;" title="Flächenkarte"></iframe>
+            </div>-->
+        </div>
+    </div>
+
+
+      <div class="violet-box">
+        <div class="social-fixed">
+        <a href="https://www.linkedin.com/in/deinprofil" target="_blank" rel="noopener noreferrer" class="external-btn" title="LinkedIn">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" style="width:32px;height:32px;vertical-align:middle;">
+        </a>
+        <a href="https://github.com/annedick" target="_blank" rel="noopener noreferrer" class="external-btn" title="GitHub">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" style="width:32px;height:32px;vertical-align:middle;">
+        </a>
+    </div>
+    </div>
+
+    <script>
+    const modeBtn = document.getElementById('modeBtn');
+    const body = document.body;
+    function updateModeButton() {
+        if (body.classList.contains('night-mode')) {
+            modeBtn.textContent = 'Light';
+            modeBtn.classList.add('night');
+        } else {
+            modeBtn.textContent = 'Night';
+            modeBtn.classList.remove('night');
+        }
+    }
+    modeBtn.addEventListener('click', () => {
+        body.classList.toggle('night-mode');
+        updateModeButton();
+    });
+    updateModeButton();
+    </script>
+</body>
+</html>
