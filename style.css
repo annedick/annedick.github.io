@@ -68,6 +68,12 @@ body.night-mode header {
     color: #ffd6fa;
     text-decoration: underline;
 }
+body.night-mode .header-buttons a {
+    color: #7a478a !important;
+}
+body.night-mode h1 {
+    color: #7a478a !important;
+}
 .social-fixed {
     position: fixed;
     right: 2.2rem;

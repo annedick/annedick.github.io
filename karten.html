@@ -12,6 +12,9 @@
         .folium-map, #map, .leaflet-pane, .leaflet-marker-pane, .leaflet-popup-pane, .leaflet-overlay-pane {
             z-index: 500 !important;
         }
+        body.night-mode .karten-bg {
+            background: #181818 !important;
+        }
     </style>
 </head>
 <body>
@@ -28,7 +31,7 @@
     </header>
 <h3 id="externa"></h3>
             <!-- Basiskarte eingebunden -->
-    <div style="background:#fff; padding:2.5rem 3vw;">
+    <div style="background:#fff; padding:2.5rem 3vw;" class="karten-bg">
         <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; margin-top:2.5rem;">
             <div style="flex: 1 1 45%; min-width: 300px; max-width: 600px;">
                 <h2 style="text-align:center;margin-bottom:1rem;color:#7a478a;">Basiskarte</h2>
